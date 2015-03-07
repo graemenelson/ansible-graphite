@@ -20,5 +20,3 @@
   - name: storage aggregation conf
     template: src=storage-aggregation.conf dest=/etc/carbon/
     notify: restart carbon-cache
-
-  

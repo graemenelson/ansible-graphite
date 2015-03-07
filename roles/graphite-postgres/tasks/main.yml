@@ -1,0 +1,9 @@
+---
+  # - name: create graphite postgres user
+  #   shell: sudo -H -u postgres bash -c "psql -c \"{{ pg_create_db }}\""
+
+  - name: create graphite db
+    postgresql_db: name=graphite
+
+  - name: create graphite postgres user
+    postgresql_user: name={{ pg_username }} password={{ pg_password }} priv=ALL/graphite    

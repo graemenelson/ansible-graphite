@@ -1,6 +1,10 @@
 ---
  - hosts: all
    sudo:  true
+   vars:
+     pg_username: 'graphite'
+     pg_password: 'password'
+     pg_create_db: "CREATE USER {{ pg_username }} WITH PASSWORD '{{ pg_password }}';"
    roles:
      - common
      - docker
@@ -9,3 +13,4 @@
      - apache
      - postgres
      - graphite
+     - graphite-postgres
