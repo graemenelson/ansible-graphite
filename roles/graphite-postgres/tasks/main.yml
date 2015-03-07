@@ -3,7 +3,9 @@
   #   shell: sudo -H -u postgres bash -c "psql -c \"{{ pg_create_db }}\""
 
   - name: create graphite db
+    sudo_user: postgres
     postgresql_db: name=graphite
 
   - name: create graphite postgres user
-    postgresql_user: name={{ pg_username }} password={{ pg_password }} priv=ALL/graphite    
+    sudo_user: postgres
+    postgresql_user: name={{ pg_username }} password={{ pg_password }} db=graphite priv=ALL
