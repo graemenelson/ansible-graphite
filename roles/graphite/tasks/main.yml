@@ -1,0 +1,24 @@
+---
+  - name: install graphite packages
+    apt: pkg={{ item }} state=latest
+    with_items:
+      - graphite-web
+      - graphite-carbon
+
+  - name: graphite-carbon cache config
+    template: src=graphite-carbon dest=/etc/default/
+    notify: restart carbon-cache
+
+  - name: graphite-carbon conf
+    template: src=carbon.conf dest=/etc/carbon/
+    notify: restart carbon-cache
+
+  - name: storage schema conf
+    template: src=storage-schemas.conf dest=/etc/carbon/
+    notify: restart carbon-cache
+
+  - name: storage aggregation conf
+    template: src=storage-aggregation.conf dest=/etc/carbon/
+    notify: restart carbon-cache
+
+  
